@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from './comps/Title';
 import UploadForm from "../src/comps/UploadForm";
-import ImageGrid from './comps/imageGrid';
+import ImageGrid from './comps/imageGrid/imageGrid.jsx';
 import Modal from './comps/modal';
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Title/>
       <UploadForm/>
-      <ImageGrid setSelectedImg={setSelectedImg}/>
+      {/* <ImageGrid setSelectedImg={setSelectedImg}/> */}
       {selectedImg && <Modal selectedImg = {selectedImg} setSelectedImg={setSelectedImg}/>}
     </div>
   );
