@@ -6,6 +6,7 @@ import Testing from './Testing';
 import { createStore } from 'redux';
 import reducers from './reducers';
 import Notes from './Notes';
+import TodoList from './TodoList';
 import { Provider } from 'react-redux';
 
 
@@ -27,7 +28,8 @@ ReactDOM.render(
     {/* <Provider store={store}>
     <Testing/>
     </Provider> */}
-    <Notes/>
+    {/* <Notes/> */}
+    <TodoList/>
   </React.StrictMode>,
   document.getElementById('root')
 );

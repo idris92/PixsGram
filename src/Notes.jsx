@@ -164,9 +164,9 @@ function Notes() {
 									<h3>Notes</h3>
 								</div>
 								<ol className="breadcrumb">
-									<li className="breadcrumb-item">
+									{/* <li className="breadcrumb-item">
 										<a href="javascript:void(0);">Apps</a>
-									</li>
+									</li> */}
 									<li className="breadcrumb-item active" aria-current="page">
 										<a href="javascript:void(0);">Notes</a>
 									</li>
