@@ -8,6 +8,10 @@ function Notes() {
 	const [nav, setNav] = useState({
 		notes: 'active',
 		fav: '',
+		personal:'',
+		work:'',
+		social:'',
+		important:''
 	})
 	const [ payload, setPayload ] = useState(
 		localStorage.getItem('payload') ? JSON.parse(localStorage.getItem('payload')) : data
@@ -90,20 +94,50 @@ function Notes() {
 		// console.log(pressTag);
 	};
 	const favouriteFilter=()=>{
-		let listedTags = payload;
+		let listedTags = JSON.parse(localStorage.getItem('payload'));
 		let filtered = listedTags.filter((listTag)=> {
 			return listTag.favorite === 'favorite';
 		})
 		setPayload(filtered);
-		setNav({...nav,'fav':'active', 'notes':''})
-		// console.log("filtered",filtered);
-		// console.log(payload);
+		setNav({...nav,'fav':'active', 'notes':'','personal':'', 'work':'', 'social':'', 'important':''})
+	}
+	const personalFilter=()=>{
+		let listedTags = JSON.parse(localStorage.getItem('payload'));
+		let filtered = listedTags.filter((listTag)=> {
+			return listTag.tag === 'personal';
+		})
+		setPayload(filtered);
+		setNav({...nav,'fav':'', 'notes':'','personal':'active', 'work':'', 'social':'', 'important':''})
+	}
+	const workFilter=()=>{
+		let listedTags = JSON.parse(localStorage.getItem('payload'));
+		let filtered = listedTags.filter((listTag)=> {
+			return listTag.tag === 'work';
+		})
+		setPayload(filtered);
+		setNav({...nav,'fav':'', 'notes':'','personal':'', 'work':'active', 'social':'', 'important':''})
+	}
+	const socialFilter=()=>{
+		let listedTags = JSON.parse(localStorage.getItem('payload'));
+		let filtered = listedTags.filter((listTag)=> {
+			return listTag.tag === 'social';
+		})
+		setPayload(filtered);
+		setNav({...nav,'fav':'', 'notes':'','personal':'', 'work':'', 'social':'active', 'important':''})
+	}
+	const importantFilter=()=>{
+		let listedTags = JSON.parse(localStorage.getItem('payload'));
+		let filtered = listedTags.filter((listTag)=> {
+			return listTag.tag === 'important';
+		})
+		setPayload(filtered);
+		setNav({...nav,'fav':'', 'notes':'','personal':'', 'work':'', 'social':'', 'important':'active'})
 	}
 	
 
 	const allNotes =()=>{
 		setPayload(JSON.parse(localStorage.getItem('payload')));
-		setNav({...nav,'fav':'', 'notes':'active'})
+		setNav({...nav,'fav':'', 'notes':'active','personal':'', 'work':'', 'social':'', 'important':''})
 		// console.log('payload', payload);
 	}
 	useEffect(
@@ -294,32 +328,32 @@ function Notes() {
 													>
 														<li className="nav-item">
 															<a
-																className="nav-link list-actions g-dot-primary"
-																id="note-personal"
+																className={`nav-link list-actions g-dot-primary ${nav.personal}`}
+																id="note-personal" onClick={personalFilter}
 															>
 																Personal
 															</a>
 														</li>
 														<li className="nav-item">
 															<a
-																className="nav-link list-actions g-dot-warning"
-																id="note-work"
+																className={`nav-link list-actions g-dot-warning ${nav.work}`}
+																id="note-work" onClick={workFilter}
 															>
 																Work
 															</a>
 														</li>
 														<li className="nav-item">
 															<a
-																className="nav-link list-actions g-dot-success"
-																id="note-social"
+																className={`nav-link list-actions g-dot-success ${nav.social}`}
+																id="note-social" onClick={socialFilter}
 															>
 																Social
 															</a>
 														</li>
 														<li className="nav-item">
 															<a
-																className="nav-link list-actions g-dot-danger"
-																id="note-important"
+																className={`nav-link list-actions g-dot-danger ${nav.important}`}
+																id="note-important" onClick={importantFilter}
 															>
 																Important
 															</a>
